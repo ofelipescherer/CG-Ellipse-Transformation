@@ -1,4 +1,4 @@
-# Indroduction :bulb:
+# Introduction :bulb:
 
 CG-Ellipse-Transformation
 
