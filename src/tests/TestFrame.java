@@ -3,7 +3,6 @@ package tests;
 import javax.swing.SwingUtilities;
 
 import view.ViewFrame;
-import view.ViewSliderPanel;
 
 public class TestFrame {
 
