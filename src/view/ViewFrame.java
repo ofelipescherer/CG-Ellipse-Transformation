@@ -33,7 +33,7 @@ public class ViewFrame extends JFrame{
 	class TranslationListener implements ChangeListener{
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			canvas.updateValue(sliders.getsTranslationX(), sliders.getsTranslationY());
+			canvas.updateValueX(sliders.getsTranslationX());
 		}	
 	}
 	
