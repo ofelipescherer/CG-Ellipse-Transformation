@@ -14,7 +14,7 @@ public class ViewSliderPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	JSlider sTranslationX = new JSlider(-100,100,0);
-	JSlider sTranslationY = new JSlider(0,250,125);
+	JSlider sTranslationY = new JSlider(-100,100,0);
 	
 	JSlider sRotationX = new JSlider(0,250,125);
 	JSlider sRotationY = new JSlider(0,250,125);
@@ -90,8 +90,11 @@ public class ViewSliderPanel extends JPanel{
 		return sShearingY.getValue();
 	}
 
-	public void addListenerTranslation(ChangeListener cl) {
+	public void addListenerTranslationX(ChangeListener cl) {
 		this.sTranslationX.addChangeListener(cl);
+	}
+	
+	public void addListenerTranslationY(ChangeListener cl) {
 		this.sTranslationY.addChangeListener(cl);
 	}
 	

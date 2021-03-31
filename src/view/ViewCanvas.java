@@ -166,7 +166,15 @@ public class ViewCanvas extends JPanel{
 //			repaint();
 //		}
 		h = newX;
-		System.out.println(newX);
+		repaint();
+	}
+	
+	public void updateValueY(double newY) {
+//		for(int i=0; i<points.size()-1; i++) {
+//			points.get(i).set(0,points.get(i).get(0) + newX);
+//			repaint();
+//		}
+		k = newY;
 		repaint();
 	}
 	

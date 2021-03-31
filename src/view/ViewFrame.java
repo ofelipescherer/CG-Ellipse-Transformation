@@ -20,7 +20,8 @@ public class ViewFrame extends JFrame{
 		add(canvas, BorderLayout.LINE_START);
 		add(sliders, BorderLayout.CENTER);
 		
-		sliders.addListenerTranslation(new TranslationListener());
+		sliders.addListenerTranslationX(new TranslationXListener());
+		sliders.addListenerTranslationY(new TranslationYListener());
 		sliders.addListenerRotation(new RotationListener());
 		sliders.addListenerScaling(new ScalingListener());
 		sliders.addListenerShearing(new ShearingListener());
@@ -30,10 +31,17 @@ public class ViewFrame extends JFrame{
 		setVisible(true);
 	}
 	
-	class TranslationListener implements ChangeListener{
+	class TranslationXListener implements ChangeListener{
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			canvas.updateValueX(sliders.getsTranslationX());
+		}	
+	}
+	
+	class TranslationYListener implements ChangeListener{
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			canvas.updateValueY(sliders.getsTranslationY());
 		}	
 	}
 	
