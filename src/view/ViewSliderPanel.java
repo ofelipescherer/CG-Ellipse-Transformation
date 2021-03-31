@@ -13,7 +13,7 @@ public class ViewSliderPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	JSlider sTranslationX = new JSlider(0,250,125);
+	JSlider sTranslationX = new JSlider(-100,100,0);
 	JSlider sTranslationY = new JSlider(0,250,125);
 	
 	JSlider sRotationX = new JSlider(0,250,125);

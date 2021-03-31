@@ -7,16 +7,19 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
 public class ViewCanvas extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
-	
+	Random rand = new Random();
 	List<List<Double>> points;
 	List<Double> tValues;
-	int vertices = 10;
+	int vertices = 15;
+	
+	List<Color> colors;
 	
 //	float x;
 //	float y;
@@ -62,6 +65,21 @@ public class ViewCanvas extends JPanel{
 	
 	public ViewCanvas() {
 		setPreferredSize(new Dimension(500,500));
+		
+		colors = new ArrayList<>();
+		
+		for(int i=0; i< vertices; i++) {
+			colors.add(new Color(
+					rand.nextFloat(),
+					rand.nextFloat(),
+					rand.nextFloat()
+					));
+		}
+		
+	}
+	
+	
+	private void makeEllipse() {
 		tValues = new ArrayList<>();
 		points = new ArrayList<>();
 		
@@ -83,18 +101,15 @@ public class ViewCanvas extends JPanel{
 			
 			points.add(p);
 		}
-		
-		System.out.println(points.size());
-		
 	}
 	
-	private void makeEllipse() {
-		
-	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		makeEllipse();
+		
 		Graphics2D g2d = (Graphics2D)g;
 		
 		g2d.setColor(Color.RED);
@@ -109,6 +124,7 @@ public class ViewCanvas extends JPanel{
 			int pointY = (int) Math.round(points.get(i).get(1)) + scaleCorrection;
 			int pointX1 = (int) Math.round(points.get(i+1).get(0)) + scaleCorrection;
 			int pointY1 = (int) Math.round(points.get(i+1).get(1)) + scaleCorrection;
+			g2d.setColor(colors.get(i));
 			g2d.drawLine(pointX, pointY, pointX1, pointY1);
 		}
 		
@@ -150,6 +166,7 @@ public class ViewCanvas extends JPanel{
 //			repaint();
 //		}
 		h = newX;
+		System.out.println(newX);
 		repaint();
 	}
 	
