@@ -2,6 +2,7 @@ package tests;
 
 import javax.swing.SwingUtilities;
 
+import controller.ControllerDesktop;
 import view.ViewFrame;
 
 public class TestFrame {
@@ -17,7 +18,7 @@ public class TestFrame {
 	
 	
 	public static void createAndShowGUI() {
-		new ViewFrame();
+		new ControllerDesktop();
 	}
 
 	

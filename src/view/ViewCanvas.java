@@ -11,34 +11,17 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
+import model.entities.Draw;
+
 public class ViewCanvas extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
-	Random rand = new Random();
-	List<List<Double>> points;
-	List<Double> tValues;
-	int vertices = 15;
-	
-	List<Color> colors;
+
 	
 //	float x;
 //	float y;
 	
-	//Ellipse Size
-	int a = 5;
-	int b = 4;
-	
-	//If you do not want to start at center, change these values
-	double h = 0;
-	double k = 0;
-	
-	float t;
-	
-	//The values above need to follow the equation
-	// x = a*cos(t) == cos(t) = x/a
-	// y = b*sin(t) == sin(t) = y/b
-	//cos² + sin² = 1
-	// ((x-h)/a)² + ((y-k)/b)² = 1
+	Draw draw;
 	
 	
 	//Some start values
@@ -63,77 +46,45 @@ public class ViewCanvas extends JPanel{
 //	int valueX = 0;
 //	int valueY = 0;
 	
-	public ViewCanvas() {
+	public ViewCanvas(Draw aDraw) {
+		
 		setPreferredSize(new Dimension(500,500));
-		
-		colors = new ArrayList<>();
-		
-		for(int i=0; i< vertices; i++) {
-			colors.add(new Color(
-					rand.nextFloat(),
-					rand.nextFloat(),
-					rand.nextFloat()
-					));
-		}
-		
+		draw = aDraw;
 	}
 	
 	
-	private void makeEllipse() {
-		tValues = new ArrayList<>();
-		points = new ArrayList<>();
-		
-		for(double i=0; i<=360; i+=360/vertices) {
-			tValues.add(i);
-			
-			
-			double x = (a*(Math.cos(Math.toRadians(i)))) + h;
-			double y = (b*(Math.sin(Math.toRadians(i)))) + k;
-			
-			if(i==90 || i==270)
-				x = 0;
-			if(i==180)
-				y=0;
-			
-			List<Double> p = new ArrayList<>();
-			p.add(x*Math.abs(a*a));
-			p.add(y*Math.abs(b*b));
-			
-			points.add(p);
-		}
-	}
+
 	
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		makeEllipse();
+		draw.makeEllipse();
 		
 		Graphics2D g2d = (Graphics2D)g;
 		
-		g2d.setColor(Color.RED);
 		g2d.setStroke(new BasicStroke(2));
 		
 		int scaleCorrection = 500/2;
 		
-		for(int i=0; i<points.size()-1; i++) {
+		for(int i=0; i<draw.getPoints().size()-1; i++) {
 //			System.out.println("Angulo " + tValues.get(i));
 //			System.out.println("Ponto " + points.get(i));
-			int pointX = (int) Math.round(points.get(i).get(0)) + scaleCorrection;
-			int pointY = (int) Math.round(points.get(i).get(1)) + scaleCorrection;
-			int pointX1 = (int) Math.round(points.get(i+1).get(0)) + scaleCorrection;
-			int pointY1 = (int) Math.round(points.get(i+1).get(1)) + scaleCorrection;
-			g2d.setColor(colors.get(i));
+			int pointX = (int) Math.round(draw.getPoints().get(i).get(0)) + scaleCorrection;
+			int pointY = (int) Math.round(draw.getPoints().get(i).get(1)) + scaleCorrection;
+			int pointX1 = (int) Math.round(draw.getPoints().get(i+1).get(0)) + scaleCorrection;
+			int pointY1 = (int) Math.round(draw.getPoints().get(i+1).get(1)) + scaleCorrection;
+			g2d.setColor(draw.getColors().get(i));
 			g2d.drawLine(pointX, pointY, pointX1, pointY1);
 		}
 		
 		//Draw the last Line
 			g2d.drawLine(
-					(int) Math.round(points.get(points.size()-1).get(0)) + scaleCorrection,
-					(int) Math.round(points.get(points.size()-1).get(1)) + scaleCorrection,
-					(int) Math.round(points.get(0).get(0)) + scaleCorrection,
-					(int) Math.round(points.get(0).get(1)) + scaleCorrection
+					(int) Math.round(draw.getPoints().get(draw.getPoints().size()-1).get(0)) + scaleCorrection,
+					(int) Math.round(draw.getPoints().get(draw.getPoints().size()-1).get(1)) + scaleCorrection,
+					(int) Math.round(draw.getPoints().get(0).get(0)) + scaleCorrection,
+					(int) Math.round(draw.getPoints().get(0).get(1)) + scaleCorrection
 			);
 		
 //		int x0 = 16 + scaleCorrect;
@@ -165,7 +116,7 @@ public class ViewCanvas extends JPanel{
 //			points.get(i).set(0,points.get(i).get(0) + newX);
 //			repaint();
 //		}
-		h = newX;
+		double h = newX;
 		repaint();
 	}
 	
@@ -174,7 +125,7 @@ public class ViewCanvas extends JPanel{
 //			points.get(i).set(0,points.get(i).get(0) + newX);
 //			repaint();
 //		}
-		k = newY;
+		double k = newY;
 		repaint();
 	}
 	
