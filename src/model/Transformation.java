@@ -1,11 +1,12 @@
 package model;
 
-import java.util.List;
+import model.entities.Point;
 
 public class Transformation {
 
-	public List<Double> translade(){
-		return null;
+	static public Point translade(double aX, double aY, double x0, double y0){
+		return new Point(x0 + aX, y0 + aY);
+		
 	}
 	
 }

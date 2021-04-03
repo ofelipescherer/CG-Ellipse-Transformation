@@ -9,6 +9,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.entities.Draw;
+import model.entities.Point;
 
 public class ViewFrame extends JFrame{
 	
@@ -44,11 +45,11 @@ public class ViewFrame extends JFrame{
 		sliders.addListenerTranslation(cl);
 	}
 	
-	public List<Double> getValueSTranslade() {
-		List<Double> aux = new ArrayList<>();
-		aux.add((double) sliders.getsTranslationX());
-		aux.add((double) sliders.getsTranslationY());
-		return aux;
+	public Point getValueSTranslade() {
+		return new Point(
+				(double) sliders.getsTranslationX(), 
+				(double) sliders.getsTranslationY()
+				);
 	}
 	
 	class RotationListener implements ChangeListener{

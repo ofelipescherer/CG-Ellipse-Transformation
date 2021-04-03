@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.event.ChangeListener;
 
 import model.entities.Draw;
+import model.entities.Point;
 
 public class ViewDesktop {
 
@@ -14,7 +15,7 @@ public class ViewDesktop {
 		frame = new ViewFrame(aDraw);
 	}
 	
-	public List<Double> getValueSTranslade() {
+	public Point getValueSTranslade() {
 		return frame.getValueSTranslade();
 	}
 	

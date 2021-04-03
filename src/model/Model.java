@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.entities.Draw;
+import model.entities.Point;
 
 public class Model {
 
 	List<Double> tValues;
-	List<List<Double>> points;
+	List<Point> points;
 	
 	Draw draw;
 	
@@ -18,7 +19,7 @@ public class Model {
 		draw = new Draw(vertices, a, b, points);
 	}
 	
-	public List<List<Double>> initPoints(int vertices, int a, int b){
+	public List<Point> initPoints(int vertices, int a, int b){
 		tValues = new ArrayList<>();
 		points = new ArrayList<>();
 		
@@ -34,19 +35,21 @@ public class Model {
 			if(i==180)
 				y=0;
 			
-			List<Double> p = new ArrayList<>();
-			p.add(x*Math.abs(a*a));
-			p.add(y*Math.abs(b*b));
-			
+			Point p = new Point(
+					x*Math.abs(a*a), 
+					y*Math.abs(b*b)
+					);
+
 			points.add(p);
 		}
 		
 		return points;
 	}
 	
-	public void doTransformations(List<Double> points) {
+	public void doTransformations(Point point) {
 		draw.reset();
-		draw.doTranslade(points.get(0), points.get(1));
+		draw.doTranslade(point.x, point.y);
+		
 	}
 	
 	public Draw getDraw() {

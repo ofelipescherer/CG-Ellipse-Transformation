@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import model.Transformation;
+
 public class Draw {
 
 	Random rand = new Random();
-	List<List<Double>> points;
-	List<List<Double>> initialPoints;
+	List<Point> points;
+	List<Point> initialPoints;
 	List<Double> tValues;
 	int vertices;
 	
@@ -34,7 +36,7 @@ public class Draw {
 	 270|0  |-3
 	 360|4  |0
 	*/
-	public Draw(int aVertices, int aWidth, int aHeight, List<List<Double>> aPoints) {
+	public Draw(int aVertices, int aWidth, int aHeight, List<Point> aPoints) {
 		this.vertices = aVertices;
 		this.width = aWidth;
 		this.height = aHeight;
@@ -58,7 +60,7 @@ public class Draw {
 		this.vertices = vertices;
 	}
 
-	public List<List<Double>> getPoints() {
+	public List<Point> getPoints() {
 		return points;
 	}
 
@@ -78,12 +80,22 @@ public class Draw {
 	}
 	
 	public void doTranslade(double aX, double aY) {
-		List<List<Double>> aux = new ArrayList<>();
-		for(List<Double> p : points) {
-			List<Double> newP = new ArrayList<>();
-			newP.add(p.get(0) + aX);
-			newP.add(p.get(1) + aY);
+		List<Point> aux = new ArrayList<>();
+		
+		for(Point p : points) {
+			Point newP = Transformation.translade(aX, aY, p.x, p.y);
 			aux.add(newP);
+		}	
+		this.points = aux;
+	}
+	
+	public void doRotation(double angle) {
+		List<Point> aux = new ArrayList<>();
+		for(Point p : points) {
+			Point newP = new Point();
+//			newP.add(p.get(0) + aX);
+//			newP.add(p.get(1) + aY);
+//			aux.add(newP);
 		}
 		this.points = aux;	
 	}
@@ -91,7 +103,7 @@ public class Draw {
 	@Override
 	public String toString() {
 		String res = "";
-		for (List<Double> p: this.points) {
+		for (Point p: this.points) {
 			res += p;
 			res += "\n";
 		}

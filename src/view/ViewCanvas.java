@@ -37,20 +37,20 @@ public class ViewCanvas extends JPanel{
 		for(int i=0; i<draw.getPoints().size()-1; i++) {
 //			System.out.println("Angulo " + tValues.get(i));
 //			System.out.println("Ponto " + points.get(i));
-			int pointX = (int) Math.round(draw.getPoints().get(i).get(0)) + scaleCorrection;
-			int pointY = (int) Math.round(draw.getPoints().get(i).get(1)) + scaleCorrection;
-			int pointX1 = (int) Math.round(draw.getPoints().get(i+1).get(0)) + scaleCorrection;
-			int pointY1 = (int) Math.round(draw.getPoints().get(i+1).get(1)) + scaleCorrection;
+			int pointX = (int) Math.round(draw.getPoints().get(i).x) + scaleCorrection;
+			int pointY = (int) Math.round(draw.getPoints().get(i).y) + scaleCorrection;
+			int pointX1 = (int) Math.round(draw.getPoints().get(i+1).x) + scaleCorrection;
+			int pointY1 = (int) Math.round(draw.getPoints().get(i+1).y) + scaleCorrection;
 			g2d.setColor(draw.getColors().get(i));
 			g2d.drawLine(pointX, pointY, pointX1, pointY1);
 		}
 		
 		//Draw the last Line
 			g2d.drawLine(
-					(int) Math.round(draw.getPoints().get(draw.getPoints().size()-1).get(0)) + scaleCorrection,
-					(int) Math.round(draw.getPoints().get(draw.getPoints().size()-1).get(1)) + scaleCorrection,
-					(int) Math.round(draw.getPoints().get(0).get(0)) + scaleCorrection,
-					(int) Math.round(draw.getPoints().get(0).get(1)) + scaleCorrection
+					(int) Math.round(draw.getPoints().get(draw.getPoints().size()-1).x) + scaleCorrection,
+					(int) Math.round(draw.getPoints().get(draw.getPoints().size()-1).y) + scaleCorrection,
+					(int) Math.round(draw.getPoints().get(0).x) + scaleCorrection,
+					(int) Math.round(draw.getPoints().get(0).y) + scaleCorrection
 			);
 	}
 	

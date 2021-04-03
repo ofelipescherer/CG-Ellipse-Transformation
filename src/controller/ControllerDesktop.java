@@ -7,6 +7,7 @@ import javax.swing.event.ChangeListener;
 
 import model.Model;
 import model.entities.Draw;
+import model.entities.Point;
 import view.ViewDesktop;
 
 public class ControllerDesktop {
@@ -16,7 +17,7 @@ public class ControllerDesktop {
 	Model model;
 	
 	public ControllerDesktop() {
-		model = new Model(4, 5, 4);
+		model = new Model(3, 5, 4);
 
 		view = new ViewDesktop(model.getDraw());
 		
@@ -28,7 +29,7 @@ public class ControllerDesktop {
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			
-			List<Double> pointsTransladed = view.getValueSTranslade();
+			Point pointsTransladed = view.getValueSTranslade();
 			
 			model.doTransformations(pointsTransladed);
 			
