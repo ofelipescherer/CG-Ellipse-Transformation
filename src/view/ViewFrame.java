@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
@@ -24,8 +26,6 @@ public class ViewFrame extends JFrame{
 		add(canvas, BorderLayout.LINE_START);
 		add(sliders, BorderLayout.CENTER);
 		
-		sliders.addListenerTranslationX(new TranslationXListener());
-		sliders.addListenerTranslationY(new TranslationYListener());
 		sliders.addListenerRotation(new RotationListener());
 		sliders.addListenerScaling(new ScalingListener());
 		sliders.addListenerShearing(new ShearingListener());
@@ -36,18 +36,19 @@ public class ViewFrame extends JFrame{
 		setVisible(true);
 	}
 	
-	class TranslationXListener implements ChangeListener{
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			canvas.updateValueX(sliders.getsTranslationX());
-		}	
+	public void updateDraw(Draw aDraw) {
+		canvas.updateDraw(aDraw);
 	}
 	
-	class TranslationYListener implements ChangeListener{
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			canvas.updateValueY(sliders.getsTranslationY());
-		}	
+	public void addListenerTranslation(ChangeListener cl) {
+		sliders.addListenerTranslation(cl);
+	}
+	
+	public List<Double> getValueSTranslade() {
+		List<Double> aux = new ArrayList<>();
+		aux.add((double) sliders.getsTranslationX());
+		aux.add((double) sliders.getsTranslationY());
+		return aux;
 	}
 	
 	class RotationListener implements ChangeListener{

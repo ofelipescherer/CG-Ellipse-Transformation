@@ -9,32 +9,45 @@ public class Draw {
 
 	Random rand = new Random();
 	List<List<Double>> points;
+	List<List<Double>> initialPoints;
 	List<Double> tValues;
-	int vertices = 4;
+	int vertices;
 	
 	List<Color> colors;
 	
 	//Ellipse Size
-	int a = 5;
-	int b = 4;
-	
-	//If you do not want to start at center, change these values
-	double h = 0;
-	double k = 0;
-	
-	float t;
+	int width;
+	int height;
 	
 	//The values above need to follow the equation
 	// x = a*cos(t) == cos(t) = x/a
 	// y = b*sin(t) == sin(t) = y/b
 	//cos² + sin² = 1
 	// ((x-h)/a)² + ((y-k)/b)² = 1
-	
-	public Draw() {
+	//Some start values
+	/*
+	 t  | x | y
+	 ---|---|---
+	 0  |4  |0 
+	 90 |0  |3
+	 180|-4 |0
+	 270|0  |-3
+	 360|4  |0
+	*/
+	public Draw(int aVertices, int aWidth, int aHeight, List<List<Double>> aPoints) {
+		this.vertices = aVertices;
+		this.width = aWidth;
+		this.height = aHeight;
+		this.points = aPoints;
+		this.initialPoints = aPoints;
 		this.chooseColors();
 		//List<List<Double>> points
 		
 
+	}
+	
+	public void reset() {
+		this.points = initialPoints;
 	}
 	
 	public int getVertices() {
@@ -64,28 +77,15 @@ public class Draw {
 		}
 	}
 	
-	public void makeEllipse() {
-		tValues = new ArrayList<>();
-		points = new ArrayList<>();
-		
-		for(double i=0; i<=360; i+=360/vertices) {
-			tValues.add(i);
-			
-			
-			double x = (a*(Math.cos(Math.toRadians(i)))) + h;
-			double y = (b*(Math.sin(Math.toRadians(i)))) + k;
-			
-			if(i==90 || i==270)
-				x = 0;
-			if(i==180)
-				y=0;
-			
-			List<Double> p = new ArrayList<>();
-			p.add(x*Math.abs(a*a));
-			p.add(y*Math.abs(b*b));
-			
-			points.add(p);
+	public void doTranslade(double aX, double aY) {
+		List<List<Double>> aux = new ArrayList<>();
+		for(List<Double> p : points) {
+			List<Double> newP = new ArrayList<>();
+			newP.add(p.get(0) + aX);
+			newP.add(p.get(1) + aY);
+			aux.add(newP);
 		}
+		this.points = aux;	
 	}
 
 	@Override

@@ -90,11 +90,8 @@ public class ViewSliderPanel extends JPanel{
 		return sShearingY.getValue();
 	}
 
-	public void addListenerTranslationX(ChangeListener cl) {
+	public void addListenerTranslation(ChangeListener cl) {
 		this.sTranslationX.addChangeListener(cl);
-	}
-	
-	public void addListenerTranslationY(ChangeListener cl) {
 		this.sTranslationY.addChangeListener(cl);
 	}
 	
