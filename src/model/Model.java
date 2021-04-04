@@ -46,10 +46,10 @@ public class Model {
 		return points;
 	}
 	
-	public void doTransformations(Point point) {
+	public void doTransformations(Point point, double angle) {
 		draw.reset();
 		draw.doTranslade(point.x, point.y);
-		
+		draw.doRotation(angle);
 	}
 	
 	public Draw getDraw() {

@@ -19,6 +19,10 @@ public class ViewDesktop {
 		return frame.getValueSTranslade();
 	}
 	
+	public double getValueAngleRotation() {
+		return frame.getValueAngleRotation();
+	}
+	
 	public void addListenerTranslation(ChangeListener cl) {
 		frame.addListenerTranslation(cl);
 	}

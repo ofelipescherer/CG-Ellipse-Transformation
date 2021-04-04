@@ -26,11 +26,6 @@ public class ViewFrame extends JFrame{
 		canvas = new ViewCanvas(draw);
 		add(canvas, BorderLayout.LINE_START);
 		add(sliders, BorderLayout.CENTER);
-		
-		sliders.addListenerRotation(new RotationListener());
-		sliders.addListenerScaling(new ScalingListener());
-		sliders.addListenerShearing(new ShearingListener());
-		
 
 		pack();
 		setLocationRelativeTo(null);
@@ -42,7 +37,7 @@ public class ViewFrame extends JFrame{
 	}
 	
 	public void addListenerTranslation(ChangeListener cl) {
-		sliders.addListenerTranslation(cl);
+		sliders.addListener(cl);
 	}
 	
 	public Point getValueSTranslade() {
@@ -52,25 +47,8 @@ public class ViewFrame extends JFrame{
 				);
 	}
 	
-	class RotationListener implements ChangeListener{
-		@Override
-		public void stateChanged(ChangeEvent e) {
-
-		}
-	}
-	
-	class ScalingListener implements ChangeListener{
-		@Override
-		public void stateChanged(ChangeEvent e) {
-	
-		}
-	}
-	
-	class ShearingListener implements ChangeListener{
-		@Override
-		public void stateChanged(ChangeEvent e) {
-
-		}	
-	}
+	public double getValueAngleRotation() {
+		return sliders.getsRotation();
+	}	
 
 }

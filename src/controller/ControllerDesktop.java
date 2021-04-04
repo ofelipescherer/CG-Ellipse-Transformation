@@ -17,26 +17,28 @@ public class ControllerDesktop {
 	Model model;
 	
 	public ControllerDesktop() {
-		model = new Model(3, 5, 4);
+		model = new Model(15, 5, 4);
 
 		view = new ViewDesktop(model.getDraw());
 		
-		view.addListenerTranslation(new TranslationListener());
+		view.addListenerTranslation(new SliderListener());
 	}
 	
-	class TranslationListener implements ChangeListener{
+	class SliderListener implements ChangeListener{
 
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			
 			Point pointsTransladed = view.getValueSTranslade();
+			double angle = view.getValueAngleRotation();
 			
-			model.doTransformations(pointsTransladed);
+			model.doTransformations(pointsTransladed, angle);
 			
 			Draw draw = model.getDraw();
 			view.updateDraw(draw);
 		}
 		
 	}
+	
 	
 }

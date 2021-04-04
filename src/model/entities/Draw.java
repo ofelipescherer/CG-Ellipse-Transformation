@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import model.Transformation;
 
 public class Draw {
@@ -48,6 +47,17 @@ public class Draw {
 
 	}
 	
+	public Point getMidPoint() {
+		Point midPoint = new Point();
+		for(Point p: points) {
+			midPoint.x += p.x;
+			midPoint.y += p.y;
+		}
+		midPoint.x /= points.size();
+		midPoint.y /= points.size();
+		return midPoint;
+	}
+	
 	public void reset() {
 		this.points = initialPoints;
 	}
@@ -83,7 +93,7 @@ public class Draw {
 		List<Point> aux = new ArrayList<>();
 		
 		for(Point p : points) {
-			Point newP = Transformation.translade(aX, aY, p.x, p.y);
+			Point newP = Transformation.translade(p, aX, aY);
 			aux.add(newP);
 		}	
 		this.points = aux;
@@ -91,11 +101,13 @@ public class Draw {
 	
 	public void doRotation(double angle) {
 		List<Point> aux = new ArrayList<>();
+		Point midPoint = this.getMidPoint();
 		for(Point p : points) {
-			Point newP = new Point();
-//			newP.add(p.get(0) + aX);
-//			newP.add(p.get(1) + aY);
-//			aux.add(newP);
+			Point newP = new Point(p.x, p.y);
+			newP = Transformation.translade(newP, -midPoint.x, -midPoint.y);
+			newP = Transformation.rotate(newP, angle);
+			newP = Transformation.translade(newP, midPoint.x, midPoint.y);
+			aux.add(newP);
 		}
 		this.points = aux;	
 	}
