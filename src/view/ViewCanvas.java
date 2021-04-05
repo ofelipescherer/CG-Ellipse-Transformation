@@ -35,13 +35,11 @@ public class ViewCanvas extends JPanel{
 		int scaleCorrection = 500/2;
 		
 		for(int i=0; i<draw.getPoints().size()-1; i++) {
-//			System.out.println("Angulo " + tValues.get(i));
-//			System.out.println("Ponto " + points.get(i));
 			int pointX = (int) Math.round(draw.getPoints().get(i).x) + scaleCorrection;
 			int pointY = (int) Math.round(draw.getPoints().get(i).y) + scaleCorrection;
 			int pointX1 = (int) Math.round(draw.getPoints().get(i+1).x) + scaleCorrection;
 			int pointY1 = (int) Math.round(draw.getPoints().get(i+1).y) + scaleCorrection;
-			g2d.setColor(draw.getColors().get(i));
+			g2d.setColor(draw.getColors()[i]);
 			g2d.drawLine(pointX, pointY, pointX1, pointY1);
 		}
 		
@@ -57,6 +55,7 @@ public class ViewCanvas extends JPanel{
 	public void updateDraw(Draw aDraw) {
 		this.draw = aDraw;
 		repaint();
+		
 	}
 	
 //	public void updateValueX(double newX) {

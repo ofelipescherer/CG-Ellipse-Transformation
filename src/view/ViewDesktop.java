@@ -15,6 +15,10 @@ public class ViewDesktop {
 		frame = new ViewFrame(aDraw);
 	}
 	
+	public int getVertices() {
+		return frame.getVertices();
+	}
+	
 	public Point getValueSTranslade() {
 		return frame.getValueSTranslade();
 	}
@@ -23,10 +27,13 @@ public class ViewDesktop {
 		return frame.getValueAngleRotation();
 	}
 	
-	public void addListenerTranslation(ChangeListener cl) {
-		frame.addListenerTranslation(cl);
+	public void addSliderListener(ChangeListener cl) {
+		frame.addSliderListener(cl);
 	}
 	
+	public void addSliderChangeVerticesListener(ChangeListener cl) {
+		frame.addSliderListener(cl);
+	}
 	public void updateDraw(Draw aDraw) {
 		frame.updateDraw(aDraw);
 	}

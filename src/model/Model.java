@@ -13,13 +13,17 @@ public class Model {
 	
 	Draw draw;
 	
+	int a;
+	int b;
 	
 	public Model(int vertices, int a, int b) {
 		this.initPoints(vertices, a, b);
+		this.a = a;
+		this.b = b;
 		draw = new Draw(vertices, a, b, points);
 	}
 	
-	public List<Point> initPoints(int vertices, int a, int b){
+	public void initPoints(int vertices, int a, int b){
 		tValues = new ArrayList<>();
 		points = new ArrayList<>();
 		
@@ -42,8 +46,6 @@ public class Model {
 
 			points.add(p);
 		}
-		
-		return points;
 	}
 	
 	public void doTransformations(Point point, double angle) {
@@ -54,5 +56,11 @@ public class Model {
 	
 	public Draw getDraw() {
 		return draw;
+	}
+	
+	public void changeVertices(int aVertices) {
+		draw.reset();
+		this.initPoints(aVertices, a, b);
+		draw = new Draw(aVertices, a, b, points);
 	}
 }

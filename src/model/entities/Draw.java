@@ -14,7 +14,7 @@ public class Draw {
 	List<Double> tValues;
 	int vertices;
 	
-	List<Color> colors;
+	Color[] colors;
 	
 	//Ellipse Size
 	int width;
@@ -74,18 +74,18 @@ public class Draw {
 		return points;
 	}
 
-	public List<Color> getColors() {
+	public Color[] getColors() {
 		return colors;
 	}
 
 	public void chooseColors() {
-		colors = new ArrayList<>();
-		for(int i=0; i< vertices; i++) {
-			colors.add(new Color(
+		colors = new Color[points.size()];
+		for(int i=0; i< points.size(); i++) {
+			colors[i] = new Color(
 					rand.nextFloat(),
 					rand.nextFloat(),
 					rand.nextFloat()
-					));
+					);
 		}
 	}
 	

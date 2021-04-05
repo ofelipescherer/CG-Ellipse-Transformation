@@ -36,8 +36,16 @@ public class ViewFrame extends JFrame{
 		canvas.updateDraw(aDraw);
 	}
 	
-	public void addListenerTranslation(ChangeListener cl) {
+	public void addSliderListener(ChangeListener cl) {
 		sliders.addListener(cl);
+	}
+	
+	public void addSliderChangeVerticesListener(ChangeListener cl) {
+		sliders.addListener(cl);
+	}
+	
+	public int getVertices() {
+		return sliders.getsVertices();
 	}
 	
 	public Point getValueSTranslade() {

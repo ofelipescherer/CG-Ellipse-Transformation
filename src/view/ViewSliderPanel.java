@@ -13,7 +13,7 @@ public class ViewSliderPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	JSlider sVertices = new JSlider(1,36,10);
+	JSlider sVertices = new JSlider(1,36,15);;
 	
 	double rFator = 58;
 	JSlider sRotation = new JSlider(0,(int)(2*Math.PI*rFator),0);
@@ -101,13 +101,17 @@ public class ViewSliderPanel extends JPanel{
 		return sShearingY.getValue();
 	}
 	public void addListener(ChangeListener cl) {
+		this.sVertices.addChangeListener(cl);
 		this.sTranslationX.addChangeListener(cl);
 		this.sTranslationY.addChangeListener(cl);
 		this.sRotation.addChangeListener(cl);
-		this.sVertices.addChangeListener(cl);
 		this.sScalingX.addChangeListener(cl);
 		this.sScalingY.addChangeListener(cl);
 		this.sShearingX.addChangeListener(cl);
 		this.sShearingY.addChangeListener(cl);
+	}
+	
+	public void addListenerChangeVertices(ChangeListener cl) {
+		this.sVertices.addChangeListener(cl);
 	}
 }
