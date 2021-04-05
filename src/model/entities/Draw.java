@@ -12,11 +12,11 @@ public class Draw {
 	List<Point> points;
 	List<Point> initialPoints;
 	List<Double> tValues;
-	int vertices;
+	
 	
 	Color[] colors;
 	
-	//Ellipse Size
+	
 	int width;
 	int height;
 	
@@ -35,16 +35,11 @@ public class Draw {
 	 270|0  |-3
 	 360|4  |0
 	*/
-	public Draw(int aVertices, int aWidth, int aHeight, List<Point> aPoints) {
-		this.vertices = aVertices;
-		this.width = aWidth;
-		this.height = aHeight;
+	public Draw(List<Point> aPoints) {
 		this.points = aPoints;
 		this.initialPoints = aPoints;
 		this.chooseColors();
 		//List<List<Double>> points
-		
-
 	}
 	
 	public Point getMidPoint() {
@@ -60,14 +55,6 @@ public class Draw {
 	
 	public void reset() {
 		this.points = initialPoints;
-	}
-	
-	public int getVertices() {
-		return vertices;
-	}
-
-	public void setVertices(int vertices) {
-		this.vertices = vertices;
 	}
 
 	public List<Point> getPoints() {
@@ -111,6 +98,21 @@ public class Draw {
 		}
 		this.points = aux;	
 	}
+	
+	public void doScale(double aX, double aY) {
+		List<Point> aux = new ArrayList<>();
+		Point midPoint = this.getMidPoint();
+		for(Point p : points) {
+			Point newP = new Point(p.x, p.y);
+			newP = Transformation.translade(newP, -midPoint.x, -midPoint.y);
+			newP = Transformation.scale(newP, aX, aY);
+			newP = Transformation.translade(newP, midPoint.x, midPoint.y);
+			aux.add(newP);
+		}
+		this.points = aux;
+	}
+	
+
 
 	@Override
 	public String toString() {

@@ -27,12 +27,20 @@ public class ViewDesktop {
 		return frame.getValueAngleRotation();
 	}
 	
+	public double getValueScaleX() {
+		return frame.getValueScaleX();
+	}
+	
+	public double getValueScaleY() {
+		return frame.getValueScaleY();
+	}
+	
 	public void addSliderListener(ChangeListener cl) {
 		frame.addSliderListener(cl);
 	}
 	
 	public void addSliderChangeVerticesListener(ChangeListener cl) {
-		frame.addSliderListener(cl);
+		frame.addSliderChangeVerticesListener(cl);
 	}
 	public void updateDraw(Draw aDraw) {
 		frame.updateDraw(aDraw);

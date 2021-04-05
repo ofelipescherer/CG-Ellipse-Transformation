@@ -21,8 +21,8 @@ public class ViewSliderPanel extends JPanel{
 	JSlider sTranslationX = new JSlider(-100,100,0);
 	JSlider sTranslationY = new JSlider(-100,100,0);
 	
-	JSlider sScalingX = new JSlider(0,250,125);
-	JSlider sScalingY = new JSlider(0,250,125);
+	JSlider sScalingX = new JSlider(0,5,1);
+	JSlider sScalingY = new JSlider(0,5,1);
 	
 	JSlider sShearingX = new JSlider(0,250,125);
 	JSlider sShearingY = new JSlider(0,250,125);
@@ -49,25 +49,37 @@ public class ViewSliderPanel extends JPanel{
 		sShearingX.setBorder(BorderFactory.createTitledBorder("Shearing X"));
 		sShearingY.setBorder(BorderFactory.createTitledBorder("Shearing Y"));
 		
+
+		sTranslationX.setMajorTickSpacing(50);
+		sTranslationX.setMinorTickSpacing(10);
+		sTranslationY.setMajorTickSpacing(50);
+		sTranslationY.setMinorTickSpacing(10);
+
+		sVertices.setMajorTickSpacing(5);
+		sVertices.setMinorTickSpacing(1);
+//		sVertices.setPaintTicks(true);
+//		sVertices.setPaintLabels(true);
+		
+		sRotation.setMajorTickSpacing((int) (2*Math.PI*rFator/12));
+		sRotation.setMinorTickSpacing(60);
+//		sRotation.setPaintTicks(true);
+//		sRotation.setPaintLabels(true);
+		
+		sShearingX.setMajorTickSpacing(50);
+		sShearingX.setMinorTickSpacing(10);
+		sShearingY.setMajorTickSpacing(50);
+		sShearingY.setMinorTickSpacing(10);
+		
+		sScalingX.setMajorTickSpacing(1);
+		sScalingY.setMajorTickSpacing(1);
+		
 		//Add Mark Tricks
 		for (Component c : this.getComponents()) {
-			if(c instanceof JSlider && c != sVertices && c != sRotation) {
-				((JSlider) c).setMajorTickSpacing(50);
-			    ((JSlider) c).setMinorTickSpacing(10);
+			if(c instanceof JSlider) {
 			    ((JSlider) c).setPaintTicks(true);
 			    ((JSlider) c).setPaintLabels(true);
 			}
 		}
-		System.out.println();
-		sVertices.setMajorTickSpacing(5);
-		sVertices.setMinorTickSpacing(1);
-		sVertices.setPaintTicks(true);
-		sVertices.setPaintLabels(true);
-		
-		sRotation.setMajorTickSpacing((int) (2*Math.PI*rFator/12));
-		sRotation.setMinorTickSpacing(60);
-		sRotation.setPaintTicks(true);
-		sRotation.setPaintLabels(true);
 	}
 	public int getsVertices() {
 		return sVertices.getValue();
@@ -101,7 +113,7 @@ public class ViewSliderPanel extends JPanel{
 		return sShearingY.getValue();
 	}
 	public void addListener(ChangeListener cl) {
-		this.sVertices.addChangeListener(cl);
+//		this.sVertices.addChangeListener(cl);
 		this.sTranslationX.addChangeListener(cl);
 		this.sTranslationY.addChangeListener(cl);
 		this.sRotation.addChangeListener(cl);

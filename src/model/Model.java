@@ -13,17 +13,21 @@ public class Model {
 	
 	Draw draw;
 	
-	int a;
-	int b;
+	int vertices;
 	
-	public Model(int vertices, int a, int b) {
-		this.initPoints(vertices, a, b);
-		this.a = a;
-		this.b = b;
-		draw = new Draw(vertices, a, b, points);
+	//Ellipse Size
+	int width;
+	int height;
+	
+	public Model(int vertices, int aWidth, int aHeight) {
+		this.width = aWidth;
+		this.height = aHeight;
+		this.vertices = vertices;
+		this.initPoints();
+		draw = new Draw(points);
 	}
 	
-	public void initPoints(int vertices, int a, int b){
+	public void initPoints(){
 		tValues = new ArrayList<>();
 		points = new ArrayList<>();
 		
@@ -31,8 +35,8 @@ public class Model {
 			tValues.add(i);
 			
 			
-			double x = a*(Math.cos(Math.toRadians(i)));
-			double y = b*(Math.sin(Math.toRadians(i)));
+			double x = width*(Math.cos(Math.toRadians(i)));
+			double y = height*(Math.sin(Math.toRadians(i)));
 			
 			if(i==90 || i==270)
 				x = 0;
@@ -40,18 +44,20 @@ public class Model {
 				y=0;
 			
 			Point p = new Point(
-					x*Math.abs(a*a), 
-					y*Math.abs(b*b)
+					x*Math.abs(width*width), 
+					y*Math.abs(height*height)
 					);
 
 			points.add(p);
 		}
 	}
 	
-	public void doTransformations(Point point, double angle) {
+	public void doTransformations(Point point, double angle, double a, double b) {
 		draw.reset();
+		draw.doScale(a, b);
 		draw.doTranslade(point.x, point.y);
 		draw.doRotation(angle);
+
 	}
 	
 	public Draw getDraw() {
@@ -60,7 +66,8 @@ public class Model {
 	
 	public void changeVertices(int aVertices) {
 		draw.reset();
-		this.initPoints(aVertices, a, b);
-		draw = new Draw(aVertices, a, b, points);
+		this.initPoints();
+		draw = new Draw(points);
 	}
+
 }

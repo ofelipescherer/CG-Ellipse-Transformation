@@ -41,7 +41,7 @@ public class ViewFrame extends JFrame{
 	}
 	
 	public void addSliderChangeVerticesListener(ChangeListener cl) {
-		sliders.addListener(cl);
+		sliders.addListenerChangeVertices(cl);
 	}
 	
 	public int getVertices() {
@@ -58,5 +58,13 @@ public class ViewFrame extends JFrame{
 	public double getValueAngleRotation() {
 		return sliders.getsRotation();
 	}	
+	
+	public double getValueScaleX() {
+		return sliders.getsScalingX();
+	}
+	
+	public double getValueScaleY() {
+		return sliders.getsScalingY();
+	}
 
 }
