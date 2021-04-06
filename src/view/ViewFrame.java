@@ -66,5 +66,12 @@ public class ViewFrame extends JFrame{
 	public double getValueScaleY() {
 		return sliders.getsScalingY();
 	}
+	public double getValueShearingX() {
+		return sliders.getsShearingX();
+	}
+	
+	public double getValueShearingY() {
+		return sliders.getsShearingY();
+	}
 
 }

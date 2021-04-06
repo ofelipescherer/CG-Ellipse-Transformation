@@ -24,8 +24,8 @@ public class ViewSliderPanel extends JPanel{
 	JSlider sScalingX = new JSlider(0,5,1);
 	JSlider sScalingY = new JSlider(0,5,1);
 	
-	JSlider sShearingX = new JSlider(0,250,125);
-	JSlider sShearingY = new JSlider(0,250,125);
+	JSlider sShearingX = new JSlider(0,10,0);
+	JSlider sShearingY = new JSlider(0,10,0);
 	
 	public ViewSliderPanel() {
 		setLayout(new GridLayout(4,2));
@@ -65,10 +65,8 @@ public class ViewSliderPanel extends JPanel{
 //		sRotation.setPaintTicks(true);
 //		sRotation.setPaintLabels(true);
 		
-		sShearingX.setMajorTickSpacing(50);
-		sShearingX.setMinorTickSpacing(10);
-		sShearingY.setMajorTickSpacing(50);
-		sShearingY.setMinorTickSpacing(10);
+		sShearingX.setMajorTickSpacing(1);
+		sShearingY.setMajorTickSpacing(1);
 		
 		sScalingX.setMajorTickSpacing(1);
 		sScalingY.setMajorTickSpacing(1);
@@ -105,12 +103,12 @@ public class ViewSliderPanel extends JPanel{
 		return sScalingY.getValue();
 	}
 
-	public int getsShearingX() {
-		return sShearingX.getValue();
+	public double getsShearingX() {
+		return (double) sShearingX.getValue()/5;
 	}
 
-	public int getsShearingY() {
-		return sShearingY.getValue();
+	public double getsShearingY() {
+		return (double)  sShearingY.getValue()/5;
 	}
 	public void addListener(ChangeListener cl) {
 //		this.sVertices.addChangeListener(cl);

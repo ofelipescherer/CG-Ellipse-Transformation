@@ -17,9 +17,6 @@ public class Draw {
 	Color[] colors;
 	
 	
-	int width;
-	int height;
-	
 	//The values above need to follow the equation
 	// x = a*cos(t) == cos(t) = x/a
 	// y = b*sin(t) == sin(t) = y/b
@@ -112,6 +109,31 @@ public class Draw {
 		this.points = aux;
 	}
 	
+	public void doShearingX(double m) {
+		List<Point> aux = new ArrayList<>();
+		Point midPoint = this.getMidPoint();
+		for(Point p : points) {
+			Point newP = new Point(p.x, p.y);
+			newP = Transformation.translade(newP, -midPoint.x, -midPoint.y);
+			newP = Transformation.shearingX(newP, m);
+			newP = Transformation.translade(newP, midPoint.x, midPoint.y);
+			aux.add(newP);
+		}
+		this.points = aux;
+	}
+	
+	public void doShearingY(double m) {
+		List<Point> aux = new ArrayList<>();
+		Point midPoint = this.getMidPoint();
+		for(Point p : points) {
+			Point newP = new Point(p.x, p.y);
+			newP = Transformation.translade(newP, -midPoint.x, -midPoint.y);
+			newP = Transformation.shearingY(newP, m);
+			newP = Transformation.translade(newP, midPoint.x, midPoint.y);
+			aux.add(newP);
+		}
+		this.points = aux;
+	}
 
 
 	@Override

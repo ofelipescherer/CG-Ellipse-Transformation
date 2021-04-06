@@ -35,6 +35,14 @@ public class ViewDesktop {
 		return frame.getValueScaleY();
 	}
 	
+	public double getValueShearingX() {
+		return frame.getValueShearingX();
+	}
+	
+	public double getValueShearingY() {
+		return frame.getValueShearingY();
+	}
+	
 	public void addSliderListener(ChangeListener cl) {
 		frame.addSliderListener(cl);
 	}

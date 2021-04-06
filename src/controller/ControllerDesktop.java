@@ -17,7 +17,7 @@ public class ControllerDesktop {
 	Model model;
 	
 	public ControllerDesktop() {
-		model = new Model(34, 5, 4);
+		model = new Model(34, 4, 3);
 
 		view = new ViewDesktop(model.getDraw());
 		
@@ -36,7 +36,10 @@ public class ControllerDesktop {
 			double angle = view.getValueAngleRotation();
 			double a = view.getValueScaleX();
 			double b = view.getValueScaleY();
-			model.doTransformations(pointsTransladed, angle, a, b);
+			double mX = view.getValueShearingX();
+			double mY = view.getValueShearingY();
+
+			model.doTransformations(pointsTransladed, angle, a, b, mX, mY);
 			Draw draw = model.getDraw();
 			view.updateDraw(draw);
 		}
@@ -49,10 +52,14 @@ public class ControllerDesktop {
 		public void stateChanged(ChangeEvent e) {
 			model.changeVertices(view.getVertices());
 			Point pointsTransladed = view.getValueSTranslade();
+			
 			double angle = view.getValueAngleRotation();
 			double a = view.getValueScaleX();
 			double b = view.getValueScaleY();
-			model.doTransformations(pointsTransladed, angle, a, b);
+			double mX = view.getValueShearingX();
+			double mY = view.getValueShearingY();
+
+			model.doTransformations(pointsTransladed, angle, a, b, mX, mY);
 			Draw draw = model.getDraw();
 			view.updateDraw(draw);
 		}

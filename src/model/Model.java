@@ -23,15 +23,15 @@ public class Model {
 		this.width = aWidth;
 		this.height = aHeight;
 		this.vertices = vertices;
-		this.initPoints();
+		this.initPoints(vertices);
 		draw = new Draw(points);
 	}
 	
-	public void initPoints(){
+	public void initPoints(int aVertices){
 		tValues = new ArrayList<>();
 		points = new ArrayList<>();
 		
-		for(double i=0; i<=360; i+=360/vertices) {
+		for(double i=0; i<=360; i+=360/aVertices) {
 			tValues.add(i);
 			
 			
@@ -52,11 +52,13 @@ public class Model {
 		}
 	}
 	
-	public void doTransformations(Point point, double angle, double a, double b) {
+	public void doTransformations(Point point, double angle, double a, double b, double mX, double mY) {
 		draw.reset();
 		draw.doScale(a, b);
 		draw.doTranslade(point.x, point.y);
 		draw.doRotation(angle);
+		draw.doShearingX(mX);
+		draw.doShearingY(mY);
 
 	}
 	
@@ -66,7 +68,7 @@ public class Model {
 	
 	public void changeVertices(int aVertices) {
 		draw.reset();
-		this.initPoints();
+		this.initPoints(aVertices);
 		draw = new Draw(points);
 	}
 
