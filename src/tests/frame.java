@@ -34,8 +34,11 @@ class zoomBehavior implements MouseWheelListener{
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		
-		
+		System.out.println(e.getWheelRotation());
+//		if(e.getWheelRotation()) {
+//			
+//		}
+//		
 	}
 	
 	
