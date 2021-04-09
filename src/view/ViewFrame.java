@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +73,10 @@ public class ViewFrame extends JFrame{
 	
 	public double getValueShearingY() {
 		return sliders.getsShearingY();
+	}
+	
+	public void addMouseWheelListener(MouseWheelListener ml) {
+		canvas.addMouseWheelListener(ml);
 	}
 
 }

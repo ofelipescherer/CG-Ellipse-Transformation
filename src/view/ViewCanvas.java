@@ -58,6 +58,8 @@ public class ViewCanvas extends JPanel{
 		
 	}
 	
+	
+	
 //	public void updateValueX(double newX) {
 ////		for(int i=0; i<points.size()-1; i++) {
 ////			points.get(i).set(0,points.get(i).get(0) + newX);

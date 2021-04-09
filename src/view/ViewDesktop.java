@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.MouseWheelListener;
 import java.util.List;
 
 import javax.swing.event.ChangeListener;
@@ -52,6 +53,10 @@ public class ViewDesktop {
 	}
 	public void updateDraw(Draw aDraw) {
 		frame.updateDraw(aDraw);
+	}
+	
+	public void addMouseWheelListener(MouseWheelListener ml) {
+		frame.addMouseWheelListener(ml);
 	}
 	
 }

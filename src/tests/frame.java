@@ -16,8 +16,8 @@ public class frame extends JFrame{
 	
 	public frame() {
 		
-		ScrollPane sp = new ScrollPane();
-		setSize(new Dimension(500, 500));
+		Cartesian sp = new Cartesian();
+		setSize(new Dimension(600, 600));
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
