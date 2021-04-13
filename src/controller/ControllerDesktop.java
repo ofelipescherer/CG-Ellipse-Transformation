@@ -66,15 +66,13 @@ public class ControllerDesktop {
 
 		@Override
 		public void mouseWheelMoved(MouseWheelEvent e) {
-			System.out.println(e.getWheelRotation());
 			if(e.getWheelRotation() < 0) {
 				//Zoom needs to increase
 				model.setZoom(1.5);	
 			} else {
 				model.setZoom(0.5);
-			} 
+			}
 			updateDraw();
-			
 		}
 	}
 	

@@ -15,8 +15,9 @@ public class Model {
 	
 	int vertices;
 	
-	//Zoom can be a value beetween 0.5 - 2
 	double zoom = 1;
+	public int zoomPlus = 0;
+	public int zoomMinus = 0;
 	
 	//Ellipse Size
 	int width;

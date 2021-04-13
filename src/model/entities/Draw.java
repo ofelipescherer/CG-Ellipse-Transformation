@@ -23,6 +23,10 @@ public class Draw {
 	//cos² + sin² = 1
 	// ((x-h)/a)² + ((y-k)/b)² = 1
 	//Some start values
+	
+	// x = a*cos(t)
+	// y = b*sin(t)
+	
 	/*
 	 t  | x | y
 	 ---|---|---

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,6 +13,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 import model.entities.Draw;
+
 
 public class ViewCanvas extends JPanel{
 	
@@ -29,6 +31,14 @@ public class ViewCanvas extends JPanel{
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D)g;
+		
+		//Draw cartesian
+		g2d.setStroke(new BasicStroke(1));
+
+		g2d.setColor(new Color(0,0,0,100));
+		//Screen will always be 500px * zoom for 500px * by zoom
+		g2d.drawLine(250, 0, 250, 500);
+		g2d.drawLine(0, 250, 500, 250);
 		
 		g2d.setStroke(new BasicStroke(2));
 		

@@ -8,7 +8,10 @@ public class TesteScrollPanel {
 		
 		
 		
-		frame sc = new frame();
+//		frame sc = new frame();
+		double i = 180;
+		double a = Math.sin(Math.toRadians(i));
+		System.out.println(a);
 		
 		
 	}
