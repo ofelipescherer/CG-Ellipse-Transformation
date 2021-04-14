@@ -59,4 +59,8 @@ public class ViewDesktop {
 		frame.addMouseWheelListener(ml);
 	}
 	
+	public void setZoom(double aZoom) {
+		frame.setZoom(aZoom);
+	}
+	
 }

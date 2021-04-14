@@ -4,6 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -19,7 +20,10 @@ public class ViewCanvas extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
+	double zoom = 1;
 	Draw draw;
+	boolean isSpaceNeeded = false;
+	
 	public ViewCanvas(Draw aDraw) {
 		
 		setPreferredSize(new Dimension(500,500));
@@ -39,6 +43,47 @@ public class ViewCanvas extends JPanel{
 		//Screen will always be 500px * zoom for 500px * by zoom
 		g2d.drawLine(250, 0, 250, 500);
 		g2d.drawLine(0, 250, 500, 250);
+		
+		
+		if(zoom < 1) {
+			isSpaceNeeded = true;
+		} else {
+			isSpaceNeeded = false;
+		}
+			
+		g2d.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+		int counter=0;
+		//Make lines 12 is draw scale
+		for(int i = 250; i<500; i+=12*zoom) {
+			if(isSpaceNeeded) {
+				if(counter%2 ==0) {
+					g2d.drawString(String.valueOf(counter) , i-3, 242);
+					g2d.drawString(String.valueOf(-counter) , 257, i+3);
+					}
+			} else {
+				g2d.drawString(String.valueOf(counter) , i-3, 242);
+				g2d.drawString(String.valueOf(-counter) , 257, i +3);
+			}
+			counter++;
+			g2d.drawLine(245, i, 255, i);
+			g2d.drawLine(i, 245, i, 255);
+		}
+		counter =0;
+		for(int i = 250; i>0; i-=12*zoom) {
+			if(isSpaceNeeded) {
+				if(counter%2 ==0) {
+					g2d.drawString(String.valueOf(-counter) , i-3, 242);
+					g2d.drawString(String.valueOf(counter) , 257, i+3);
+					}
+			} else {
+				g2d.drawString(String.valueOf(-counter) , i-3, 242);
+				g2d.drawString(String.valueOf(counter) , 257, i +3);
+			}
+			counter++;
+			g2d.drawLine(245,i, 255, i);
+			g2d.drawLine(i, 245, i, 255);
+		}
+		
 		
 		g2d.setStroke(new BasicStroke(2));
 		
@@ -66,6 +111,10 @@ public class ViewCanvas extends JPanel{
 		this.draw = aDraw;
 		repaint();
 		
+	}
+	
+	public void setZoom(double aZoom) {
+		this.zoom = aZoom;
 	}
 	
 	

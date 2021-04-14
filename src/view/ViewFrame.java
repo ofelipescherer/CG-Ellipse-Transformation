@@ -78,5 +78,9 @@ public class ViewFrame extends JFrame{
 	public void addMouseWheelListener(MouseWheelListener ml) {
 		canvas.addMouseWheelListener(ml);
 	}
+	
+	public void setZoom(double aZoom) {
+		canvas.setZoom(aZoom);
+	}
 
 }

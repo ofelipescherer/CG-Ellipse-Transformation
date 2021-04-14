@@ -17,9 +17,10 @@ public class ControllerDesktop {
 
 	ViewDesktop view;
 	Model model;
+	double zoom = 1;
 	
 	public ControllerDesktop() {
-		model = new Model(34, 4, 3);
+		model = new Model(34, 6, 3);
 
 		view = new ViewDesktop(model.getDraw());
 		
@@ -31,7 +32,6 @@ public class ControllerDesktop {
 	
 	public void updateDraw() {
 		Point pointsTransladed = view.getValueSTranslade();
-		
 		double angle = view.getValueAngleRotation();
 		double a = view.getValueScaleX();
 		double b = view.getValueScaleY();
@@ -68,10 +68,14 @@ public class ControllerDesktop {
 		public void mouseWheelMoved(MouseWheelEvent e) {
 			if(e.getWheelRotation() < 0) {
 				//Zoom needs to increase
-				model.setZoom(1.5);	
+				zoom += 0.5;
 			} else {
-				model.setZoom(0.5);
+				zoom -= 0.5;
+				if(zoom < 0.5)
+					zoom = 0.5;
 			}
+			model.setZoom(zoom);	
+			view.setZoom(zoom);
 			updateDraw();
 		}
 	}

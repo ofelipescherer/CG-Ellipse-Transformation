@@ -16,8 +16,6 @@ public class Model {
 	int vertices;
 	
 	double zoom = 1;
-	public int zoomPlus = 0;
-	public int zoomMinus = 0;
 	
 	//Ellipse Size
 	int width;
@@ -48,8 +46,8 @@ public class Model {
 				y=0;
 			
 			Point p = new Point(
-					x*Math.abs(width*width*zoom), 
-					y*Math.abs(height*height*zoom)
+					x*12*zoom, 
+					y*12*zoom
 					);
 
 			points.add(p);
@@ -72,16 +70,17 @@ public class Model {
 	
 	public void changeVertices(int aVertices) {
 		draw.reset();
+		this.vertices = aVertices;
 		this.initPoints(aVertices);
 		draw = new Draw(points);
 	}
 	
 	public void setZoom(double aValue) {
 		this.zoom = aValue;
-		for(Point p : points) {
-			p.x *= zoom;
-			p.y *= zoom;
-		}
+		this.initPoints(vertices);
+		draw.setPoints(points);
+		draw.setInitialPoints(points);
+
 	}
 
 }

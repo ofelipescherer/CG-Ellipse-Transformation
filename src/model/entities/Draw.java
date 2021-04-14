@@ -10,7 +10,7 @@ public class Draw {
 
 	Random rand = new Random();
 	List<Point> points;
-	List<Point> initialPoints;
+	public List<Point> initialPoints;
 	List<Double> tValues;
 	
 	
@@ -60,6 +60,14 @@ public class Draw {
 
 	public List<Point> getPoints() {
 		return points;
+	}
+
+	public void setPoints(List<Point> points) {
+		this.points = points;
+	}
+	
+	public void setInitialPoints(List<Point> initialPoints) {
+		this.initialPoints = initialPoints;
 	}
 
 	public Color[] getColors() {
