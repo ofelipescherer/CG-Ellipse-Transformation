@@ -6,7 +6,6 @@ public class Transformation {
 
 	public static Point translade(Point p, double aX, double aY){
 		return new Point(p.x + aX, p.y + aY);
-		
 	}
 	
 	public static Point rotate(Point p, double angle) {
@@ -27,19 +26,11 @@ public class Transformation {
 	}
 	
 	public static Point shearingX(Point p, double m) {
-//		double[][] m1 = {{p.x,p.y}};
-//		double[][] m2 = {{1,m}, {0, 1}};
-//		double[][] res = multiply(m1, m2);
-//		System.out.println("Cisalhamento: " + res[0][0] + ", " + res[0][1]);
 		double[][] res = {{p.x + m*p.y, p.y}};
 		return new Point(res[0][0], res[0][1]);
 	}
 	
 	public static Point shearingY(Point p, double m) {
-//		double[][] m1 = {{p.x,p.y}};
-//		double[][] m2 = {{1,m}, {0, 1}};
-//		double[][] res = multiply(m1, m2);
-//		System.out.println("Cisalhamento: " + res[0][0] + ", " + res[0][1]);
 		double[][] res = {{p.x, p.y + m*p.x}};
 		return new Point(res[0][0], res[0][1]);
 	}

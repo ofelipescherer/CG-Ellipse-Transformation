@@ -8,39 +8,32 @@ import model.Transformation;
 
 public class Draw {
 
-	Random rand = new Random();
-	List<Point> points;
-	public List<Point> initialPoints;
-	List<Double> tValues;
+	private List<Point> points;
+	private List<Point> initialPoints;
+	private Color[] colors;
+	private Random rand = new Random();
 	
 	
-	Color[] colors;
-	
-	
-	//The values above need to follow the equation
-	// x = a*cos(t) == cos(t) = x/a
-	// y = b*sin(t) == sin(t) = y/b
-	//cos² + sin² = 1
-	// ((x-h)/a)² + ((y-k)/b)² = 1
-	//Some start values
-	
-	// x = a*cos(t)
-	// y = b*sin(t)
-	
-	/*
-	 t  | x | y
-	 ---|---|---
-	 0  |4  |0 
-	 90 |0  |3
-	 180|-4 |0
-	 270|0  |-3
-	 360|4  |0
-	*/
 	public Draw(List<Point> aPoints) {
 		this.points = aPoints;
 		this.initialPoints = aPoints;
 		this.chooseColors();
-		//List<List<Double>> points
+	}
+	
+	public Color[] getColors() {
+		return colors;
+	}
+	
+	public List<Point> getPoints() {
+		return points;
+	}
+
+	public void setPoints(List<Point> points) {
+		this.points = points;
+	}
+	
+	public void setInitialPoints(List<Point> initialPoints) {
+		this.initialPoints = initialPoints;
 	}
 	
 	public Point getMidPoint() {
@@ -58,22 +51,6 @@ public class Draw {
 		this.points = initialPoints;
 	}
 
-	public List<Point> getPoints() {
-		return points;
-	}
-
-	public void setPoints(List<Point> points) {
-		this.points = points;
-	}
-	
-	public void setInitialPoints(List<Point> initialPoints) {
-		this.initialPoints = initialPoints;
-	}
-
-	public Color[] getColors() {
-		return colors;
-	}
-
 	public void chooseColors() {
 		colors = new Color[points.size()];
 		for(int i=0; i< points.size(); i++) {
@@ -87,7 +64,6 @@ public class Draw {
 	
 	public void doTranslade(double aX, double aY) {
 		List<Point> aux = new ArrayList<>();
-		
 		for(Point p : points) {
 			Point newP = Transformation.translade(p, aX, aY);
 			aux.add(newP);

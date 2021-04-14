@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -15,30 +14,39 @@ import view.ViewDesktop;
 public class ControllerDesktop {
 
 
-	ViewDesktop view;
-	Model model;
-	double zoom = 1;
+	private ViewDesktop view;
+	private Model model;
+	private double zoom = 1;
 	
 	public ControllerDesktop() {
+		//Here you can choose the size and initial vertices
 		model = new Model(34, 6, 3);
 
 		view = new ViewDesktop(model.getDraw());
-		
 		view.addSliderListener(new SliderListener());
 		view.addSliderChangeVerticesListener(new SliderVerticesListener());
-		view.addMouseWheelListener(new zoomBehavior());
+		view.addMouseWheelListener(new ZoomBehavior());
 		
 	}
 	
 	public void updateDraw() {
 		Point pointsTransladed = view.getValueSTranslade();
+		pointsTransladed.x *= zoom;
+		pointsTransladed.y *= zoom;
 		double angle = view.getValueAngleRotation();
-		double a = view.getValueScaleX();
-		double b = view.getValueScaleY();
-		double mX = view.getValueShearingX();
-		double mY = view.getValueShearingY();
+		double scaleX = view.getValueScaleX();
+		double scaleY = view.getValueScaleY();
+		double shearX = view.getValueShearingX();
+		double shearY = view.getValueShearingY();
 
-		model.doTransformations(pointsTransladed, angle, a, b, mX, mY);
+		model.doTransformations(
+				pointsTransladed, 
+				angle, 
+				scaleX, 
+				scaleY, 
+				shearX, 
+				shearY);
+		
 		Draw draw = model.getDraw();
 		view.updateDraw(draw);
 	}
@@ -49,7 +57,6 @@ public class ControllerDesktop {
 		public void stateChanged(ChangeEvent e) {
 			updateDraw();
 		}
-		
 	}
 	
 	class SliderVerticesListener implements ChangeListener{
@@ -62,7 +69,7 @@ public class ControllerDesktop {
 		
 	}
 	
-	class zoomBehavior implements MouseWheelListener{
+	class ZoomBehavior implements MouseWheelListener{
 
 		@Override
 		public void mouseWheelMoved(MouseWheelEvent e) {
@@ -77,6 +84,8 @@ public class ControllerDesktop {
 			model.setZoom(zoom);	
 			view.setZoom(zoom);
 			updateDraw();
+			
+			
 		}
 	}
 	

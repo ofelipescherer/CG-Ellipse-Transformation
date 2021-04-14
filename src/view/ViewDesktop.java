@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.event.MouseWheelListener;
-import java.util.List;
 
 import javax.swing.event.ChangeListener;
 
@@ -10,7 +9,7 @@ import model.entities.Point;
 
 public class ViewDesktop {
 
-	ViewFrame frame;
+	private ViewFrame frame;
 	
 	public ViewDesktop(Draw aDraw) {
 		frame = new ViewFrame(aDraw);

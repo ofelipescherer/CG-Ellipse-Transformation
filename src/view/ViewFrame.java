@@ -2,11 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.event.MouseWheelListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.entities.Draw;
@@ -16,9 +13,9 @@ public class ViewFrame extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	
-	Draw draw;
-	ViewSliderPanel sliders = new ViewSliderPanel();
-	ViewCanvas canvas;
+	private Draw draw;
+	private ViewSliderPanel sliders = new ViewSliderPanel();
+	private ViewCanvas canvas;
 	
 	public ViewFrame(Draw aDraw) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -28,6 +25,7 @@ public class ViewFrame extends JFrame{
 		add(canvas, BorderLayout.LINE_START);
 		add(sliders, BorderLayout.CENTER);
 
+		setResizable(false);
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);

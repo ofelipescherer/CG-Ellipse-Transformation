@@ -13,19 +13,19 @@ public class ViewSliderPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	JSlider sVertices = new JSlider(1,36,15);;
+	private JSlider sVertices = new JSlider(1,36,15);;
 	
-	double rFator = 58;
-	JSlider sRotation = new JSlider(0,(int)(2*Math.PI*rFator),0);
+	private double rFator = 58;
+	private JSlider sRotation = new JSlider(0,(int)(2*Math.PI*rFator),0);
 	
-	JSlider sTranslationX = new JSlider(-100,100,0);
-	JSlider sTranslationY = new JSlider(-100,100,0);
+	private JSlider sTranslationX = new JSlider(-100,100,0);
+	private JSlider sTranslationY = new JSlider(-100,100,0);
 	
-	JSlider sScalingX = new JSlider(0,5,1);
-	JSlider sScalingY = new JSlider(0,5,1);
+	private JSlider sScalingX = new JSlider(0,5,1);
+	private JSlider sScalingY = new JSlider(0,5,1);
 	
-	JSlider sShearingX = new JSlider(0,10,0);
-	JSlider sShearingY = new JSlider(0,10,0);
+	private JSlider sShearingX = new JSlider(0,10,0);
+	private JSlider sShearingY = new JSlider(0,10,0);
 	
 	public ViewSliderPanel() {
 		setLayout(new GridLayout(4,2));
@@ -57,13 +57,9 @@ public class ViewSliderPanel extends JPanel{
 
 		sVertices.setMajorTickSpacing(5);
 		sVertices.setMinorTickSpacing(1);
-//		sVertices.setPaintTicks(true);
-//		sVertices.setPaintLabels(true);
 		
 		sRotation.setMajorTickSpacing((int) (2*Math.PI*rFator/12));
 		sRotation.setMinorTickSpacing(60);
-//		sRotation.setPaintTicks(true);
-//		sRotation.setPaintLabels(true);
 		
 		sShearingX.setMajorTickSpacing(1);
 		sShearingY.setMajorTickSpacing(1);
@@ -111,7 +107,6 @@ public class ViewSliderPanel extends JPanel{
 		return (double)  sShearingY.getValue()/5;
 	}
 	public void addListener(ChangeListener cl) {
-//		this.sVertices.addChangeListener(cl);
 		this.sTranslationX.addChangeListener(cl);
 		this.sTranslationY.addChangeListener(cl);
 		this.sRotation.addChangeListener(cl);

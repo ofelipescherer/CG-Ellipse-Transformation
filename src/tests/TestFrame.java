@@ -3,7 +3,6 @@ package tests;
 import javax.swing.SwingUtilities;
 
 import controller.ControllerDesktop;
-import view.ViewFrame;
 
 public class TestFrame {
 

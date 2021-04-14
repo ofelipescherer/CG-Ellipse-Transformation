@@ -1,15 +1,11 @@
 package view;
 
-import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -20,12 +16,11 @@ public class ViewCanvas extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	double zoom = 1;
-	Draw draw;
-	boolean isSpaceNeeded = false;
+	private Draw draw;
+	private double zoom = 1;
+	private boolean isSpaceNeeded = false;
 	
 	public ViewCanvas(Draw aDraw) {
-		
 		setPreferredSize(new Dimension(500,500));
 		draw = aDraw;
 	}
@@ -36,15 +31,24 @@ public class ViewCanvas extends JPanel{
 		
 		Graphics2D g2d = (Graphics2D)g;
 		
-		//Draw cartesian
+		//Set color and stroke of Cartesian plane and screen notations
 		g2d.setStroke(new BasicStroke(1));
-
 		g2d.setColor(new Color(0,0,0,100));
-		//Screen will always be 500px * zoom for 500px * by zoom
+		
+		g2d.drawString("To manage zoom,", 380, 450);
+		g2d.drawString("use mouse scroll", 380, 465);
+		
+		g2d.drawString("Made by: ", 20, 436);
+		g2d.drawString("Felipe Scherer", 20, 450);
+		g2d.drawString("Jehan M. M. Dias", 20, 462);
+		g2d.drawString("Kelly Dena", 20, 474);
+		g2d.drawString("Vinicius G. Rossi", 20, 486);
+		
+		//Draw two main lines in the canvas that intersect in center
 		g2d.drawLine(250, 0, 250, 500);
 		g2d.drawLine(0, 250, 500, 250);
 		
-		
+		//Used to make only appear even numbers when zoom is little
 		if(zoom < 1) {
 			isSpaceNeeded = true;
 		} else {
@@ -52,8 +56,15 @@ public class ViewCanvas extends JPanel{
 		}
 			
 		g2d.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+		
+		
+		
+		//12 is the scale chosen by us. 
+		//You can change this in lines 62 and 63 of Model.java
+		
+		//Reset counter and start making segments
+		//and numbers of y negative and x positive
 		int counter=0;
-		//Make lines 12 is draw scale
 		for(int i = 250; i<500; i+=12*zoom) {
 			if(isSpaceNeeded) {
 				if(counter%2 ==0) {
@@ -65,9 +76,13 @@ public class ViewCanvas extends JPanel{
 				g2d.drawString(String.valueOf(-counter) , 257, i +3);
 			}
 			counter++;
+			//Making segments to our Cartesian plane
 			g2d.drawLine(245, i, 255, i);
 			g2d.drawLine(i, 245, i, 255);
 		}
+		
+		//Reset counter and start making segments
+		//and numbers of y positive and x negative
 		counter =0;
 		for(int i = 250; i>0; i-=12*zoom) {
 			if(isSpaceNeeded) {
@@ -80,6 +95,7 @@ public class ViewCanvas extends JPanel{
 				g2d.drawString(String.valueOf(counter) , 257, i +3);
 			}
 			counter++;
+			//Making segments to our Cartesian plane
 			g2d.drawLine(245,i, 255, i);
 			g2d.drawLine(i, 245, i, 255);
 		}
@@ -110,31 +126,10 @@ public class ViewCanvas extends JPanel{
 	public void updateDraw(Draw aDraw) {
 		this.draw = aDraw;
 		repaint();
-		
 	}
 	
 	public void setZoom(double aZoom) {
 		this.zoom = aZoom;
 	}
-	
-	
-	
-//	public void updateValueX(double newX) {
-////		for(int i=0; i<points.size()-1; i++) {
-////			points.get(i).set(0,points.get(i).get(0) + newX);
-////			repaint();
-////		}
-//		double h = newX;
-//		repaint();
-//	}
-//	
-//	public void updateValueY(double newY) {
-////		for(int i=0; i<points.size()-1; i++) {
-////			points.get(i).set(0,points.get(i).get(0) + newX);
-////			repaint();
-////		}
-//		double k = newY;
-//		repaint();
-//	}
 	
 }

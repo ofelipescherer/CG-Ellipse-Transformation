@@ -8,19 +8,29 @@ import model.entities.Point;
 
 public class Model {
 
-	List<Double> tValues;
-	List<Point> points;
-	
-	Draw draw;
-	
-	int vertices;
-	
-	double zoom = 1;
+	private List<Point> points;
+	private Draw draw;
+	private int vertices;
+	private double zoom = 1;
 	
 	//Ellipse Size
-	int width;
-	int height;
+	private int width;
+	private int height;
 	
+	//The values of x and y points need to follow the equation
+	// x = width*cos(t)
+	// y = height*sin(t)
+	//Changing t, change both x and y
+	
+	/*Some examples start values
+	 t  | x | y
+	 ---|---|---
+	 0  |4  |0 
+	 90 |0  |3
+	 180|-4 |0
+	 270|0  |-3
+	 360|4  |0
+	*/
 	public Model(int vertices, int aWidth, int aHeight) {
 		this.width = aWidth;
 		this.height = aHeight;
@@ -30,19 +40,22 @@ public class Model {
 	}
 	
 	public void initPoints(int aVertices){
-		tValues = new ArrayList<>();
 		points = new ArrayList<>();
 		
-		for(double i=0; i<=360; i+=360/aVertices) {
-			tValues.add(i);
+		for(double t=0; t<=360; t+=360/aVertices) {
 			
+			double x = width*(Math.cos(Math.toRadians(t)));
+			double y = height*(Math.sin(Math.toRadians(t)));
 			
-			double x = width*(Math.cos(Math.toRadians(i)));
-			double y = height*(Math.sin(Math.toRadians(i)));
-			
-			if(i==90 || i==270)
+			/*This block of code is necessary because the methods 
+			 'Math.cos()' and 'Math.sin()' need a value in radian
+			 but our for loop calculates in degrees. So pi/2 is an
+			 approximation that lead to wrong values of cos90,
+			 cos270 and sin180. Because of that, we hard coded 
+			 those values to be exactly 0*/
+			if(t==90 || t==270)
 				x = 0;
-			if(i==180)
+			if(t==180)
 				y=0;
 			
 			Point p = new Point(
@@ -54,14 +67,24 @@ public class Model {
 		}
 	}
 	
-	public void doTransformations(Point point, double angle, double a, double b, double mX, double mY) {
+	public void doTransformations(
+			Point point,
+			double angle,
+			double a,
+			double b,
+			double mX,
+			double mY) {
+		
 		draw.reset();
 		draw.doScale(a, b);
 		draw.doTranslade(point.x, point.y);
 		draw.doRotation(angle);
 		draw.doShearingX(mX);
 		draw.doShearingY(mY);
-
+	}
+	
+	public void doTransformations(Point point) {
+		draw.doTranslade(point.x, point.y);
 	}
 	
 	public Draw getDraw() {
@@ -80,7 +103,6 @@ public class Model {
 		this.initPoints(vertices);
 		draw.setPoints(points);
 		draw.setInitialPoints(points);
-
 	}
 
 }
